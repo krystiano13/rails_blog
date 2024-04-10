@@ -1,6 +1,13 @@
 <h1>Create new post</h1>
 
 <%= form_with model: @blog_post, url: create_post_path do |form| %>
+
+  <% if form.object.errors.any? %>
+    <% form.object.errors.full_messages.each do |error| %>
+      <p style="color:red;"><%= error %></p>
+    <% end %>
+  <% end %>
+
   <div>
     <%= form.label :title %>
     <br />
@@ -12,5 +19,6 @@
     <br />
     <%= form.text_area :body %>
   </div>
+  <br />
   <%= form.button "Create Post" %>
 <% end %>
