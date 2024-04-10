@@ -1,0 +1,16 @@
+<h1>Create new post</h1>
+
+<%= form_with model: @blog_post, url: create_post_path do |form| %>
+  <div>
+    <%= form.label :title %>
+    <br />
+    <%= form.text_field :title %>
+  </div>
+  <br />
+  <div>
+    <%= form.label :body %>
+    <br />
+    <%= form.text_area :body %>
+  </div>
+  <%= form.button "Create Post" %>
+<% end %>

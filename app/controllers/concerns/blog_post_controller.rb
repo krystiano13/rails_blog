@@ -12,4 +12,8 @@ class BlogPostController < ApplicationController
   rescue
     redirect_to root_path
   end
+
+  def new
+    @blog_post = BlogPost.new
+  end
 end
