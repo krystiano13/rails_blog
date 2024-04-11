@@ -18,7 +18,7 @@ class BlogPostController < ApplicationController
   end
 
   def create
-    @blog_post = BlogPost.new(get_params())
+    @blog_post = BlogPost.new(get_params)
 
     if @blog_post.save
       redirect_to root_path
@@ -28,7 +28,22 @@ class BlogPostController < ApplicationController
   end
 
   def edit
+    @blog_post = BlogPost.find_by(id: params[:id])
 
+    if !@blog_post.present?
+      redirect_to posts_path
+    end
+  end
+
+  def update
+    @blog_post = BlogPost.find_by(id: params[:id])
+
+    if @blog_post.present?
+      @blog_post.update(get_params)
+      redirect_to posts_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

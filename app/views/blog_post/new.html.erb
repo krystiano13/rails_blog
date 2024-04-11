@@ -1,24 +1,4 @@
 <h1>Create new post</h1>
 
-<%= form_with model: @blog_post, url: create_post_path do |form| %>
+<%= render partial: "form", locals: { blog_post: @blog_post, url: create_post_path } %>
 
-  <% if form.object.errors.any? %>
-    <% form.object.errors.full_messages.each do |error| %>
-      <p style="color:red;"><%= error %></p>
-    <% end %>
-  <% end %>
-
-  <div>
-    <%= form.label :title %>
-    <br />
-    <%= form.text_field :title %>
-  </div>
-  <br />
-  <div>
-    <%= form.label :body %>
-    <br />
-    <%= form.text_area :body %>
-  </div>
-  <br />
-  <%= form.button "Create Post" %>
-<% end %>
