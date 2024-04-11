@@ -1,11 +1,14 @@
 class BlogPostController < ApplicationController
+  before_action :set_blog_post , except: [:index, :new, :create]
+
+  def set_blog_post
+    @blog_post = BlogPost.find_by(id: params[:id])
+  end
   def index
     @blog_posts = BlogPost.all
   end
 
   def show
-    @blog_post = BlogPost.find_by(id: params[:id])
-
     if !@blog_post.present?
       redirect_to root_path
     end
@@ -28,22 +31,17 @@ class BlogPostController < ApplicationController
   end
 
   def edit
-    @blog_post = BlogPost.find_by(id: params[:id])
-
     if !@blog_post.present?
       redirect_to posts_path
     end
   end
 
   def destroy
-    @blog_post = BlogPost.find_by(id: params[:id])
     @blog_post.destroy
     redirect_to root_path
   end
 
   def update
-    @blog_post = BlogPost.find_by(id: params[:id])
-
     if @blog_post.present?
       @blog_post.update(get_params)
       redirect_to posts_path
