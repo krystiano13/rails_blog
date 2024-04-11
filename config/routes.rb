@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "posts/:id", to: "blog_post#show", as: :posts
   patch "posts/:id", to: "blog_post#update", as: :patch_post
   post "posts/new/create", to: "blog_post#create", as: :create_post
+  delete "posts/:id", to: "blog_post#destroy", as: :delete_post
 end

@@ -35,6 +35,12 @@ class BlogPostController < ApplicationController
     end
   end
 
+  def destroy
+    @blog_post = BlogPost.find_by(id: params[:id])
+    @blog_post.destroy
+    redirect_to root_path
+  end
+
   def update
     @blog_post = BlogPost.find_by(id: params[:id])
 
