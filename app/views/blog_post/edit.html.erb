@@ -2,4 +2,4 @@
 
 <%= render partial: "form", locals: { blog_post: @blog_post, url: patch_post_path } %>
 <br />
-<%= button_to "Delete" , delete_post_path, method: :delete, data: { turbo_confirm: "Are you sure ?" } %>
+<%= button_to "Delete",  delete_post_path, method: :delete, class: "bg-red-500 p-1 pl-6 pr-6 cursor-pointer hover:bg-red-600 transition-colors rounded-lg text-white", data: { turbo_confirm: "Are you sure ?" } %>
