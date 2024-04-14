@@ -3,10 +3,14 @@ class BlogPostController < ApplicationController
   before_action :set_blog_post , except: [:index, :new, :create]
 
   def set_blog_post
-    @blog_post = BlogPost.find_by(id: params[:id])
+    if user_signed_in?
+      @blog_post = BlogPost.find_by(id: params[:id])
+    else
+      @blog_post = BlogPost.published.find_by(id: params[:id])
+    end
   end
   def index
-    @blog_posts = BlogPost.all
+    @blog_posts = BlogPost.published
   end
 
   def show
@@ -53,6 +57,6 @@ class BlogPostController < ApplicationController
 
   private
   def get_params
-    return params.require(:blog_post).permit(:title, :body)
+    return params.require(:blog_post).permit(:title, :body, :published_at)
   end
 end
