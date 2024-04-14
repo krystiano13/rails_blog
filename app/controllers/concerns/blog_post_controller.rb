@@ -10,7 +10,11 @@ class BlogPostController < ApplicationController
     end
   end
   def index
-    @blog_posts = BlogPost.published
+    if user_signed_in?
+      @blog_posts = BlogPost.all
+    else
+      @blog_posts = BlogPost.published
+    end
   end
 
   def show
