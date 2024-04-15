@@ -24,5 +24,4 @@ class BlogPostTest < ActiveSupport::TestCase
   test "published? with future date returns false" do
     assert !BlogPost.new(published_at: 1.year.from_now).published?
   end
-
 end
